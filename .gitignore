@@ -1,0 +1,18 @@
+# Ignorar archivos temporales
+Library/
+Temp/
+*.tmp
+*~
+
+# Ignorar archivos de caché
+.DS_Store
+
+# Ignorar archivos generados por el IDE
+*.suo
+*.user
+*.sln
+obj/
+bin/
+
+#Ignorar archivos del Assets
+Assets/Sprites/TileMaps/

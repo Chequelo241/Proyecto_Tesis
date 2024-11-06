@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Door
+  - DragParent
+  - correcto
+  - respuesta
+  - Arma
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Suelo
+    uniqueID: 725476557
+    locked: 0
+  - name: Paredes
+    uniqueID: 770239701
+    locked: 0
+  - name: Entidades
+    uniqueID: 127385035
+    locked: 0
+  - name: Player
+    uniqueID: 3945421151
+    locked: 0
+  - name: Objetos
+    uniqueID: 1163074187
+    locked: 0
+  - name: Cobertura
+    uniqueID: 140865537
+    locked: 0
