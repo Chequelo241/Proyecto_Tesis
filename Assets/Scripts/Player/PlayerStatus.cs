@@ -14,16 +14,17 @@ public class PlayerStatus : MonoBehaviour
     public int XP;
     public const int MaxXp=100;
 
-    public void changeHealth(int value) 
+    public void ChangeHealth(int value) 
     {
         Hp.currentValue = Mathf.Clamp(Hp.currentValue+value,0,Hp.maxvalue);
     }
-    public void incrementXP(int newXP)
+    public void IncrementXP(int newXP)
     {
         XP += newXP;
-        if (XP > MaxXp) { 
+        if (XP >= MaxXp) { 
             XP = 0;
-            Hp.maxvalue = Hp.maxvalue + 1;
+            Hp.maxvalue = Hp.maxvalue + 10;
+            Hp.currentValue = Hp.maxvalue;
         }
     }
 }

@@ -9,7 +9,7 @@ public class Movimiento_Player : MonoBehaviour
 
     private Rigidbody2D playerRB;
     private Animator animator;
-
+    bool isAttackin;
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -21,7 +21,7 @@ public class Movimiento_Player : MonoBehaviour
         playerRB.velocity = moveInput * speed;
     }
 
-    private void Update()//manejo de entradas
+    private void Update()
     {
         if (Time.timeScale!=0) {
             Movemen();
@@ -31,13 +31,19 @@ public class Movimiento_Player : MonoBehaviour
 
     private void Movemen()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        if (isAttackin) return;
 
-        moveInput = new Vector2(moveX, moveY).normalized;//.normalized es para normalizar el vector y que no se sumen las componentes del mismo (evitar movimiento mas rapido en diagonal)
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;//normalized evita que se sumen las componentes del vector
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.PageUp))
+        {
+            animator.Play("Attack");
+            isAttackin = true;
+            AttackDirection();
+        }
     }
     private void Animations()
     {
+        if (isAttackin) return;
         if (moveInput.magnitude != 0) 
         { 
             animator.SetFloat("Horizontal", moveInput.x);
@@ -45,6 +51,25 @@ public class Movimiento_Player : MonoBehaviour
             animator.Play("Run"); 
         }
         else animator.Play("Idle");
-        
+    }
+    private void AttackDirection()
+    {
+        moveInput.x=animator.GetFloat("Horizontal");
+        moveInput.y=animator.GetFloat("Vertical");
+        if (Mathf.Abs(moveInput.y) > Mathf.Abs(moveInput.x))
+        {
+            moveInput.x = 0;
+        }else
+        {
+            moveInput.y = 0;
+        }
+        moveInput = moveInput.normalized;
+        animator.SetFloat("Horizontal", moveInput.x);
+        animator.SetFloat("Vertical", moveInput.y);
+        moveInput = Vector2.zero;
+    }
+    private void EndAttack()
+    {
+        isAttackin = false;
     }
 }

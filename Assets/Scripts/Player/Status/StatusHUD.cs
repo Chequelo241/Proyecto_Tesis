@@ -16,18 +16,13 @@ public class StatusHUD : MonoBehaviour
 
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.P)) 
-        {
-            player.incrementXP(5);
-            Debug.Log(player.XP);
-        }*/
         xpBar.UpdateInfo(player.XP);
+        HpBar.ChangeMaxValue(player.Hp.maxvalue);
         HpBar.UpdateInfo(player.Hp.currentValue);
-        
     }
 
-    public void changeHp(int value) 
+    public void ChangeHp(int value) 
     {
-        player.changeHealth(Random.Range(1,value));
+        player.ChangeHealth(Random.Range(1,value));
     }
 }

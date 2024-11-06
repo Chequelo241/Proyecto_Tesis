@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class HpBar : StatusBar
 {
+    public float hitDelay = 0.5f;
     public Slider hitSlider;
     private int oldValue;
-    public float hitDelay = 0.5f;
+
     float nextUpdate;
     bool updating = false;
 
