@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // Suscribirse al evento de carga de escena
         }
         else
         {
@@ -31,10 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerStatus = FindObjectOfType<PlayerStatus>(); // Asigna el PlayerStatus del jugador en la escena
-        spriteRenderer = player.GetComponent<SpriteRenderer>();
-        boxCollider = player.GetComponent<BoxCollider2D>();
-        Time.timeScale = 1;
+        InitializeGameManager();
     }
 
     void Update()
@@ -50,28 +49,78 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitializeGameManager(); // Re-inicializar el GameManager al cargar una nueva escena
+    }
+
+    void InitializeGameManager()
+    {
+        playerStatus = FindObjectOfType<PlayerStatus>(); // Asigna el PlayerStatus del jugador en la escena
+        if (playerStatus != null)
+        {
+            player = playerStatus.gameObject;
+            spriteRenderer = player.GetComponent<SpriteRenderer>();
+            boxCollider = player.GetComponent<BoxCollider2D>();
+        }
+        Time.timeScale = 1;
+    }
+
     void ModifyPlayer(bool isActive)
     {
-        if (isActive)
+        if (spriteRenderer != null && boxCollider != null)
         {
-            spriteRenderer.transform.localScale = Vector3.one * scaleMultiplier;
-            boxCollider.size = colliderSize;
-        }
-        else
-        {
-            spriteRenderer.transform.localScale = Vector3.one;
-            boxCollider.size = new Vector2(0.25f, 0.55f); // Tamaño original del BoxCollider
+            if (isActive)
+            {
+                spriteRenderer.transform.localScale = Vector3.one * scaleMultiplier;
+                boxCollider.size = colliderSize;
+            }
+            else
+            {
+                spriteRenderer.transform.localScale = Vector3.one;
+                boxCollider.size = new Vector2(0.25f, 0.55f); // Tamaño original del BoxCollider
+            }
         }
     }
 
     // Métodos para manejar el estado del jugador
     public void ChangePlayerHealth(int value)
     {
-        playerStatus.ChangeHealth(value);
+        if (playerStatus != null)
+        {
+            playerStatus.ChangeHealth(value);
+        }
     }
 
     public void IncrementPlayerXP(int xp)
     {
-        playerStatus.IncrementXP(xp);
+        if (playerStatus != null)
+        {
+            playerStatus.IncrementXP(xp);
+        }
+    }
+
+    public void SetPlayerXPToMax()
+    {
+        if (playerStatus != null)
+        {
+            playerStatus.IncrementXP(PlayerStatus.MaxXp - playerStatus.XP);
+        }
+    }
+
+    public void SetPlayerXPToHalfMax()
+    {
+        if (playerStatus != null)
+        {
+            playerStatus.IncrementXP((PlayerStatus.MaxXp / 2) - playerStatus.XP);
+        }
+    }
+
+    public void SetPlayerXPToQuarterMax()
+    {
+        if (playerStatus != null)
+        {
+            playerStatus.IncrementXP((PlayerStatus.MaxXp / 4) - playerStatus.XP);
+        }
     }
 }

@@ -150,7 +150,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1163074187
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1301477976, guid: 07c65269cfef3dc4da42b455a8e1bfa1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drag: {fileID: 0}
   item: {fileID: 0}
+  xpReward: 50
 --- !u!1 &4210244073310643775
 GameObject:
   m_ObjectHideFlags: 0

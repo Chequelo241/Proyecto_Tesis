@@ -9,6 +9,10 @@ TagManager:
   - correcto
   - respuesta
   - Arma
+  - BateriaG
+  - Bateria
+  - BateriaS
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movimiento_Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float speed = 3f;
     Vector2 moveInput;
@@ -33,7 +33,7 @@ public class Movimiento_Player : MonoBehaviour
     {
         if (isAttackin) return;
 
-        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;//normalized evita que se sumen las componentes del vector
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.PageUp))
         {
             animator.Play("Attack");
@@ -71,5 +71,24 @@ public class Movimiento_Player : MonoBehaviour
     private void EndAttack()
     {
         isAttackin = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BateriaG"))
+        {
+            GameManager.instance.SetPlayerXPToMax();
+            Destroy(collision.gameObject);
+        }
+        else if(collision.CompareTag("Bateria"))
+        {
+            GameManager.instance.SetPlayerXPToHalfMax();
+            Destroy(collision.gameObject);
+        }
+        else if (collision.CompareTag("BateriaS"))
+        {
+            GameManager.instance.SetPlayerXPToQuarterMax();
+            Destroy(collision.gameObject);
+        }
     }
 }

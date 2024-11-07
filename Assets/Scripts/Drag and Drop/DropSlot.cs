@@ -5,6 +5,7 @@ public class DropSlot : MonoBehaviour,IDropHandler
 {
     public DragHandler drag;
     public GameObject item;
+    public int xpReward=50;
 
 
     public void OnDrop(PointerEventData eventData)
@@ -21,6 +22,7 @@ public class DropSlot : MonoBehaviour,IDropHandler
                 GameObject door = GameObject.FindWithTag("Door");
                 if (door != null)
                 {
+                    GameManager.instance.IncrementPlayerXP(xpReward);
                     Destroy(door);
                 }
             }

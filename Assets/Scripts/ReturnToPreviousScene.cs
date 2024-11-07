@@ -1,13 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ReturnToPreviousScene : MonoBehaviour
 {
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) // Cambia "R" por la tecla que desees usar
-        {
-            SceneManager.LoadScene(SceneTracker.previousScene);
-        }
+        
     }
 }

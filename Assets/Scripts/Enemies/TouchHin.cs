@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchHin : MonoBehaviour
 {
-    public int damage = 5;
+    public int damage;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

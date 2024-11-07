@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     [Header("Enemy Hp Paramenters")]
     public int maxHp = 10;
     public int Hp = 10;
+    public int damage=0;
     public int xpReward = 50;
 
     protected bool isInvincible;
@@ -19,18 +20,14 @@ public class EnemyHealth : MonoBehaviour
     protected Rigidbody2D RigidBody;
     protected SpriteRenderer spriteRenderer;
     protected EnemyHit enemyHit;
-    private PlayerStatus playerStatus; 
-    public virtual void Start() 
-    { 
+
+    public virtual void Start()
+    {
         RigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyHit = GetComponentInChildren<EnemyHit>();
 
-        Hp = maxHp; 
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); 
-        if (player != null) 
-        { playerStatus = player.GetComponent<PlayerStatus>(); } 
-        else { Debug.LogError("Player object not found"); } 
+        Hp = maxHp;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -39,7 +36,8 @@ public class EnemyHealth : MonoBehaviour
             Hp--; 
             if (Hp <= 0)
             {
-                if (playerStatus != null) { playerStatus.IncrementXP(xpReward); }
+                GameManager.instance.IncrementPlayerXP(xpReward);
+
                 enemyHit.Defead();
             }
             StopBehaviour();
