@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu Inicial.unity
+    path: Assets/Scenes/Menu.unity
     guid: 8f4e77b1d151be2499d6f3825690856e
   - enabled: 1
     path: Assets/Scenes/Mazmorra.unity

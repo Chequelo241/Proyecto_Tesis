@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
         {
             ModifyPlayer(false);
         }
+        if (SceneManager.GetActiveScene().name == "Fin")
+        {
+            if (Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene("Mazmorra"); }
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
