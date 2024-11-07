@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Enemy Hp Paramenters")]
     public int maxHp = 10;
     public int Hp = 10;
     public int xpReward = 50;
 
-    bool isInvincible;
-    float invincibilityTime = 0.5f;
-    float blinkTime = 0.1f;
+    protected bool isInvincible;
+    protected float invincibilityTime = 0.5f;
+    protected float blinkTime = 0.1f;
 
     public float knockBackStrength = 1f;
-    float knockBackTime = 0.5f;
+    protected float knockBackTime = 0.3f;
 
-    Rigidbody2D RigidBody;
-    SpriteRenderer spriteRenderer;
-    EnemyHit enemyHit;
-    private PlayerStatus playerStatus; private void Start() 
+    protected Rigidbody2D RigidBody;
+    protected SpriteRenderer spriteRenderer;
+    protected EnemyHit enemyHit;
+    private PlayerStatus playerStatus; 
+    public virtual void Start() 
     { 
         RigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
                 if (playerStatus != null) { playerStatus.IncrementXP(xpReward); }
                 enemyHit.Defead();
             }
+            StopBehaviour();
             StartCoroutine(Invincibility());
             StartCoroutine(KnockBack(collision.transform.position));
         }
@@ -63,11 +66,18 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator KnockBack(Vector3 hitPosition)
     {
-        if (knockBackStrength <= 0) yield break;
+        if (knockBackStrength <= 0)
+        {
+            if (Hp>0)  ContinueBehaviour();
+            yield break;
+        }
 
         RigidBody.velocity = (transform.position - hitPosition).normalized * knockBackStrength;
         yield return new WaitForSeconds(knockBackTime);
         RigidBody.velocity = Vector3.zero;
+        yield return new WaitForSeconds(knockBackTime);
+        if (Hp > 0) ContinueBehaviour();
+
     }
 
     public void HideEnemiy()
@@ -76,4 +86,9 @@ public class EnemyHealth : MonoBehaviour
         RigidBody.velocity = Vector3.zero;
         spriteRenderer.enabled = false;
     }
+
+    public virtual void StopBehaviour() 
+    { }
+    public virtual void ContinueBehaviour() 
+    { }
 }

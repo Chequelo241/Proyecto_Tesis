@@ -52,14 +52,14 @@ TagManager:
   - name: Paredes
     uniqueID: 770239701
     locked: 0
+  - name: Objetos
+    uniqueID: 1163074187
+    locked: 0
   - name: Entidades
     uniqueID: 127385035
     locked: 0
   - name: Player
     uniqueID: 3945421151
-    locked: 0
-  - name: Objetos
-    uniqueID: 1163074187
     locked: 0
   - name: Cobertura
     uniqueID: 140865537

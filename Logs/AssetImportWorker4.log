@@ -9,11 +9,11 @@ C:\Program Files\Unity\Hub\Editor\2022.3.5f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker4
 -projectPath
 C:/Users/User/Documents/Cards
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker4.log
 -srvPort
 45844
 Successfully changed project path to: C:/Users/User/Documents/Cards
@@ -49,7 +49,7 @@ C:/Users/User/Documents/Cards
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [4024] Host "[IP] 10.241.47.86 [Port] 0 [Flags] 2 [Guid] 1040842135 [EditorId] 1040842135 [Version] 1048832 [Id] WindowsEditor(7,Rodriguez-1) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [2264] Host "[IP] 10.241.47.86 [Port] 0 [Flags] 2 [Guid] 1876884702 [EditorId] 1876884702 [Version] 1048832 [Id] WindowsEditor(7,Rodriguez-1) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [4024] Host "[IP] 10.241.47.86 [Port] 0 [Flags] 2 [Guid] 1040842135 [EditorId] 1040842135 [Version] 1048832 [Id] WindowsEditor(7,Rodriguez-1) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [2264] Host "[IP] 10.241.47.86 [Port] 0 [Flags] 2 [Guid] 1876884702 [EditorId] 1876884702 [Version] 1048832 [Id] WindowsEditor(7,Rodriguez-1) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
