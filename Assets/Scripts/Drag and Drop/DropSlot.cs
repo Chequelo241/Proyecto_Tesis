@@ -15,7 +15,7 @@ public class DropSlot : MonoBehaviour,IDropHandler
             item = DragHandler.itemDragging;
             item.transform.SetParent(transform);
             item.transform.position = transform.position;
-            if (item.transform.tag== "correcto" && item.transform.parent.tag=="respuesta") 
+            if (item.transform.CompareTag("correcto") && item.transform.parent.CompareTag("respuesta")) 
             {
                 // Destruir un solo objeto con la etiqueta "door"
                 GameObject door = GameObject.FindWithTag("Door");

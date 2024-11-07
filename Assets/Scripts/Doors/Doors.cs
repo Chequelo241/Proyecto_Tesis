@@ -22,7 +22,6 @@ public class Doors : MonoBehaviour
         if (other.collider.CompareTag("Player")) 
         {
             Debug.Log("el jugador choco");
-            Cursor.visible = true;
             DoorSprite.sprite = nuevoSprite;
             canvasPuerta1.SetActive(true);
         } ;
@@ -33,7 +32,6 @@ public class Doors : MonoBehaviour
         if (other.collider.CompareTag("Player"))
         {
             Debug.Log("el jugador se alejo");
-            Cursor.visible = false;
             DoorSprite.sprite = viejoSprite;
             canvasPuerta1.SetActive(false);
         };

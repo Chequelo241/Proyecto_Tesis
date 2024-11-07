@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class StatusHUD : MonoBehaviour
 {
-    public PlayerStatus player;
     public StatusBar xpBar;
     public HpBar HpBar;
 
     void Start()
     {
         xpBar.ChangeMaxValue(PlayerStatus.MaxXp);
-        HpBar.ChangeMaxValue(player.Hp.maxvalue);
+        HpBar.ChangeMaxValue(GameManager.instance.playerStatus.Hp.maxvalue);
     }
 
     void Update()
     {
-        xpBar.UpdateInfo(player.XP);
-        HpBar.ChangeMaxValue(player.Hp.maxvalue);
-        HpBar.UpdateInfo(player.Hp.currentValue);
+        xpBar.UpdateInfo(GameManager.instance.playerStatus.XP);
+        HpBar.ChangeMaxValue(GameManager.instance.playerStatus.Hp.maxvalue);
+        HpBar.UpdateInfo(GameManager.instance.playerStatus.Hp.currentValue);
     }
 
-    public void ChangeHp(int value) 
+    public void ChangeHp(int value)
     {
-        player.ChangeHealth(Random.Range(1,value));
+        GameManager.instance.ChangePlayerHealth(Random.Range(1, value));
     }
 }
+

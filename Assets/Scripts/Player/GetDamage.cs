@@ -9,37 +9,30 @@ public class GetDamage : MonoBehaviour
 
     void Start()
     {
-        playerStatus = GetComponent<PlayerStatus>();
+        playerStatus = GameManager.instance.playerStatus;
         if (playerStatus != null)
         {
             playerStatus.Hp.currentValue = playerStatus.Hp.maxvalue;
         }
     }
 
-    public void ReceiveDamage(int Damage)
+    public void ReceiveDamage(int damage)
     {
         if (playerStatus != null)
         {
-            playerStatus.Hp.currentValue -= Damage;
+            GameManager.instance.ChangePlayerHealth(-damage);
             if (playerStatus.Hp.currentValue <= 0)
             {
-                SceneTracker.LoadScene("Fin");
+                SceneManager.LoadScene("Fin"); // Cambiado a SceneManager para cargar la escena correctamente
             }
         }
     }
 
-    public void Healing(int Heal)
+    public void Healing(int heal)
     {
         if (playerStatus != null)
         {
-            if ((playerStatus.Hp.currentValue + Heal) < playerStatus.Hp.maxvalue)
-            {
-                playerStatus.Hp.currentValue += Heal;
-            }
-            else
-            {
-                playerStatus.Hp.currentValue = playerStatus.Hp.maxvalue;
-            }
+            GameManager.instance.ChangePlayerHealth(heal);
         }
     }
 }
