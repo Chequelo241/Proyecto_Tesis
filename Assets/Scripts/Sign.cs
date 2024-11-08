@@ -19,6 +19,9 @@ public class Sign : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        gameManager.HideText();
+        if (collision.CompareTag("Player"))
+        {
+            gameManager.HideText();
+        }
     }
 }

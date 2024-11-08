@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public PlayerStatus playerStatus; // Referencia al estado del jugador
     public GameObject player; // Referencia al objeto del jugador
 
-    public GameObject dialogBox;//referencia al cartel
-    public TextMeshProUGUI dialogtext;
+    public GameObject dialogBox; // Referencia al cartel
+    public TextMeshProUGUI dialogtext; // Referencia al texto del cartel
 
     public KeyCode key1 = KeyCode.LeftShift; // Primera tecla
     public KeyCode key2 = KeyCode.Space; // Segunda tecla
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(dialogBox); // Asegúrate de que no se destruya al cargar una nueva escena
             SceneManager.sceneLoaded += OnSceneLoaded; // Suscribirse al evento de carga de escena
         }
         else
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        InitializeDialog();
         InitializeGameManager();
     }
 
@@ -60,7 +62,21 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        InitializeDialog();
         InitializeGameManager(); // Re-inicializar el GameManager al cargar una nueva escena
+    }
+
+    void InitializeDialog()
+    {
+        if (dialogBox == null) // Asegurarse de que se mantiene la referencia si no se destruye el objeto
+        {
+            dialogBox = GameObject.FindWithTag("DialogBox"); // Encontrar el DialogBox en la nueva escena si es necesario
+        }
+        if (dialogBox != null)
+        {
+            dialogtext = dialogBox.GetComponentInChildren<TextMeshProUGUI>();
+            dialogBox.SetActive(false);
+        }
     }
 
     void InitializeGameManager()
@@ -135,12 +151,19 @@ public class GameManager : MonoBehaviour
 
     public void ShowText(string text)
     {
-        dialogBox.SetActive(true);
-        dialogtext.text = text;
+        if (dialogBox != null && dialogtext != null)
+        {
+            dialogBox.SetActive(true);
+            dialogtext.text = text;
+        }
     }
+
     public void HideText()
     {
-        dialogBox.SetActive(false);
-        dialogtext.text = "";
+        if (dialogBox != null && dialogtext != null)
+        {
+            dialogBox.SetActive(false);
+            dialogtext.text = "";
+        }
     }
 }
