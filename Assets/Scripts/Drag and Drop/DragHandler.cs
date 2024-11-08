@@ -36,7 +36,7 @@ public class DragHandler : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginD
     {
         
         itemDragging = null;
-        if (transform.parent == dragParent || transform.tag != "correcto")
+        if (transform.parent == dragParent || !transform.CompareTag("correcto"))
         {
             transform.position = startPosition;
             transform.SetParent(startParent);

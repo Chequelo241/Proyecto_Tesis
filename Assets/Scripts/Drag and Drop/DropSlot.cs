@@ -18,9 +18,12 @@ public class DropSlot : MonoBehaviour,IDropHandler
             item.transform.position = transform.position;
             if (item.transform.CompareTag("correcto") && item.transform.parent.CompareTag("respuesta")) 
             {
-                // Destruir un solo objeto con la etiqueta "door"
-                GameObject door = GameObject.FindWithTag("Door");
-                if (door != null)
+
+                Transform puzzle = transform.parent.parent; // El objeto "puzzle"
+                GameObject puertaUno = puzzle.parent.gameObject; // El objeto "puerta uno"
+                GameObject door = puertaUno.transform.parent.gameObject; // El objeto "door" con la etiqueta "Door"
+                
+                if (door.CompareTag("Door"))
                 {
                     GameManager.instance.IncrementPlayerXP(xpReward);
                     Destroy(door);
