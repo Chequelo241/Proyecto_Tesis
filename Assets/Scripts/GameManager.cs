@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
 
     public PlayerStatus playerStatus; // Referencia al estado del jugador
     public GameObject player; // Referencia al objeto del jugador
+
+    public GameObject dialogBox;//referencia al cartel
+    public TextMeshProUGUI dialogtext;
+
     public KeyCode key1 = KeyCode.LeftShift; // Primera tecla
     public KeyCode key2 = KeyCode.Space; // Segunda tecla
     public float scaleMultiplier = 2f; // Factor de escala
@@ -126,5 +131,16 @@ public class GameManager : MonoBehaviour
         {
             playerStatus.IncrementXP((PlayerStatus.MaxXp / 4) - playerStatus.XP);
         }
+    }
+
+    public void ShowText(string text)
+    {
+        dialogBox.SetActive(true);
+        dialogtext.text = text;
+    }
+    public void HideText()
+    {
+        dialogBox.SetActive(false);
+        dialogtext.text = "";
     }
 }
