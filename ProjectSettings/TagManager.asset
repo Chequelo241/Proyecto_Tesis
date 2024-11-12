@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - DialogBox
   - TextDialogBox
+  - Interaction
   layers:
   - Default
   - TransparentFX

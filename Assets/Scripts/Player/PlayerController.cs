@@ -6,19 +6,29 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 3f;
     Vector2 moveInput;
+    bool isAttackin;
+
+    bool isInvincible;
+    float invincibilityTime = 0.7f;
+    float blinkTime = 0.1f;
+
+    bool unControllable;
+    public float knockBackStrength = 10f;
+    float knockBackTime = 0.5f;
 
     private Rigidbody2D playerRB;
     private Animator animator;
-    bool isAttackin;
+    SpriteRenderer spriteRenderer;
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()//manejo de fisicas
     {
-        playerRB.velocity = moveInput * speed;
+        if (!unControllable) playerRB.velocity = moveInput * speed;
     }
 
     private void Update()
@@ -31,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void Movemen()
     {
-        if (isAttackin) return;
+        if (isAttackin ) return;
 
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.PageUp))
@@ -91,4 +101,43 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    //mecanicas de nockback
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.transform.CompareTag("Enemy") && !isInvincible)
+        {
+            StartCoroutine(Invincibility());
+            StartCoroutine(KnockBack(collision.transform.position));
+        }
+    }
+
+    IEnumerator Invincibility()
+    {
+        isInvincible = true;
+        float auxtime = invincibilityTime;
+
+        while (auxtime > 0)
+        {
+            yield return new WaitForSeconds(blinkTime);
+            auxtime -= blinkTime;
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+        }
+
+        spriteRenderer.enabled = true;
+        isInvincible = false;
+    }
+
+    IEnumerator KnockBack(Vector3 hitPosition)
+    {
+        unControllable = true;
+        moveInput = Vector2.zero;
+        playerRB.velocity = (transform.position - hitPosition).normalized * knockBackStrength;
+        yield return new WaitForSeconds(knockBackTime);
+        playerRB.velocity = Vector3.zero;
+        unControllable = false;
+
+    }
+
 }

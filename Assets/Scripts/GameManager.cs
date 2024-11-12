@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerStatus playerStatus; // Referencia al estado del jugador
     public GameObject player; // Referencia al objeto del jugador
-
+    public StatusHUD statusHUD;
     public GameObject dialogBox; // Referencia al cartel
     public TextMeshProUGUI dialogtext; // Referencia al texto del cartel
 
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
     void InitializeGameManager()
     {
         playerStatus = FindObjectOfType<PlayerStatus>(); // Asigna el PlayerStatus del jugador en la escena
+        statusHUD = FindObjectOfType<StatusHUD>();
         if (playerStatus != null)
         {
             player = playerStatus.gameObject;
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
         }
         Time.timeScale = 1;
     }
-
+    //tamaño del jugador
     void ModifyPlayer(bool isActive)
     {
         if (spriteRenderer != null && boxCollider != null)
@@ -148,7 +149,7 @@ public class GameManager : MonoBehaviour
             playerStatus.IncrementXP((PlayerStatus.MaxXp / 4) - playerStatus.XP);
         }
     }
-
+    //funciones del texto
     public void ShowText(string text)
     {
         if (dialogBox != null && dialogtext != null)
@@ -165,5 +166,12 @@ public class GameManager : MonoBehaviour
             dialogBox.SetActive(false);
             dialogtext.text = "";
         }
+    }
+    public void UpdateXpBarMaxValue(int newMaxXp) 
+    { 
+        if (statusHUD != null) 
+        { 
+            statusHUD.UpdateXpBarMaxValue(newMaxXp); 
+        } 
     }
 }
