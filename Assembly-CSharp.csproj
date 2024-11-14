@@ -61,8 +61,10 @@
     <Compile Include="Assets\Scripts\Enemies\EnemyHit.cs" />
     <Compile Include="Assets\Scripts\MainCamera.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyDummy.cs" />
+    <Compile Include="Assets\Scripts\Player\Status\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\Drag and Drop\DropSlot.cs" />
     <Compile Include="Assets\Scripts\Player\Status\HpBar.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FleeAndPatrol.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Interactions\Obsolete\Sign.cs" />
     <Compile Include="Assets\Scripts\Player\GetDamage.cs" />
@@ -78,12 +80,11 @@
     <Compile Include="Assets\Scripts\Menus\MenuPausa.cs" />
     <Compile Include="Assets\Scripts\Enemies\TouchHin.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\Player\Status\StatusBar.cs" />
     <Compile Include="Assets\Scripts\Doors\Doors.cs" />
-    <Compile Include="Assets\Scripts\Player\Status\XpBar.cs" />
     <Compile Include="Assets\Scripts\Player\Status\StatusHUD.cs" />
     <Compile Include="Assets\Scripts\Enemies\RandomPatrol.cs" />
+    <Compile Include="Assets\Scripts\Player\Status\LabelLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

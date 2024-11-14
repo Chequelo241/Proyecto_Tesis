@@ -57,6 +57,7 @@ public class RandomPatrol : EnemyHealth
         else animator.Play("Idle");
         RigidBody.velocity = speed * direction.normalized;
     }
+
     public override void StopBehaviour()
     {
         StopAllCoroutines();

@@ -37,7 +37,6 @@ public class EnemyHealth : MonoBehaviour
             if (Hp <= 0)
             {
                 GameManager.instance.IncrementPlayerXP(xpReward);
-
                 enemyHit.Defead();
             }
             StopBehaviour();
@@ -75,6 +74,7 @@ public class EnemyHealth : MonoBehaviour
         RigidBody.velocity = Vector3.zero;
         yield return new WaitForSeconds(knockBackTime);
         if (Hp > 0) ContinueBehaviour();
+        spriteRenderer.enabled = true;
 
     }
 

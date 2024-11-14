@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     private Animator animator;
     SpriteRenderer spriteRenderer;
+
+    BasicInteraction interaction;
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -34,21 +36,29 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (Time.timeScale!=0) {
-            Movemen();
+            Inputs();
             Animations();
         }
     }
 
-    private void Movemen()
+    private void Inputs()
     {
         if (isAttackin ) return;
 
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.PageUp))
         {
-            animator.Play("Attack");
-            isAttackin = true;
-            AttackDirection();
+            Attack();
+        }
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.PageDown) )
+        {
+            if (interaction!=null)
+            {
+                interaction.Interact();
+            }else
+            {
+                Debug.Log("La interaccion esta vacia");
+            }
         }
     }
     private void Animations()
@@ -61,6 +71,12 @@ public class PlayerController : MonoBehaviour
             animator.Play("Run"); 
         }
         else animator.Play("Idle");
+    }
+    private void Attack() 
+    {
+        animator.Play("Attack");
+        isAttackin = true;
+        AttackDirection();
     }
     private void AttackDirection()
     {
@@ -90,7 +106,7 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.SetPlayerXPToMax();
             Destroy(collision.gameObject);
         }
-        else if(collision.CompareTag("Bateria"))
+        else if (collision.CompareTag("Bateria"))
         {
             GameManager.instance.SetPlayerXPToHalfMax();
             Destroy(collision.gameObject);
@@ -99,9 +115,18 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.instance.SetPlayerXPToQuarterMax();
             Destroy(collision.gameObject);
+        } else if (collision.CompareTag("Interaction")) 
+        {
+            interaction = collision.GetComponent<BasicInteraction>();
         }
     }
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Interaction"))
+        {
+            interaction =null;
+        }
+    }
     //mecanicas de nockback
     private void OnCollisionEnter2D(Collision2D collision)
     {

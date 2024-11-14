@@ -6,6 +6,7 @@ public class StatusHUD : MonoBehaviour
 {
     public StatusBar xpBar;
     public HpBar HpBar;
+    public LabelLevel level;
 
     void Start()
     {
@@ -18,6 +19,8 @@ public class StatusHUD : MonoBehaviour
         xpBar.UpdateInfo(GameManager.instance.playerStatus.XP);
         HpBar.ChangeMaxValue(GameManager.instance.playerStatus.Hp.maxvalue);
         HpBar.UpdateInfo(GameManager.instance.playerStatus.Hp.currentValue);
+        level.UpdateInfo(GameManager.instance.playerStatus.Lv);
+
     }
     public void UpdateXpBarMaxValue(int newMaxXp) { xpBar.ChangeMaxValue(newMaxXp); }
     public void ChangeHp(int value)

@@ -149,29 +149,25 @@ public class GameManager : MonoBehaviour
             playerStatus.IncrementXP((PlayerStatus.MaxXp / 4) - playerStatus.XP);
         }
     }
-    //funciones del texto
-    public void ShowText(string text)
-    {
-        if (dialogBox != null && dialogtext != null)
-        {
-            dialogBox.SetActive(true);
-            dialogtext.text = text;
-        }
-    }
-
-    public void HideText()
-    {
-        if (dialogBox != null && dialogtext != null)
-        {
-            dialogBox.SetActive(false);
-            dialogtext.text = "";
-        }
-    }
     public void UpdateXpBarMaxValue(int newMaxXp) 
     { 
         if (statusHUD != null) 
         { 
             statusHUD.UpdateXpBarMaxValue(newMaxXp); 
         } 
+    }
+    //funciones del texto
+    public void ShowText(string text)
+    {
+            dialogBox.SetActive(true);
+            dialogtext.text = text;
+            //Time.timeScale = 0;
+    }
+
+    public void HideText()
+    {
+            dialogBox.SetActive(false);
+            dialogtext.text = "";
+            //Time.timeScale = 1;
     }
 }

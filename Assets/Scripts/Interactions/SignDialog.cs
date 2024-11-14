@@ -13,7 +13,7 @@ public class SignDialog : BasicInteraction
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    public override bool Interaction()
+    public override bool Interact()
     {
         bool succes = false;
 

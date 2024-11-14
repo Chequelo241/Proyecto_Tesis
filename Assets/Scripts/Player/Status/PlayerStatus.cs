@@ -13,6 +13,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public Stat Hp;
+    public int Lv;
     public int XP;
     public static int MaxXp = 100;
 
@@ -21,6 +22,7 @@ public class PlayerStatus : MonoBehaviour
         Hp.maxvalue = 100;
         Hp.currentValue = Hp.maxvalue;
         XP = 0;
+        Lv=0;
     }
 
     public void ChangeHealth(int value)
@@ -37,6 +39,7 @@ public class PlayerStatus : MonoBehaviour
             MaxXp += Mathf.CeilToInt(MaxXp * 0.1f); // Incrementa MaxXp en un 10%;
             Hp.maxvalue += 10;
             Hp.currentValue = Hp.maxvalue;
+            Lv++;
 
             // Llama al método para actualizar MaxXp en el HUD 
             GameManager.instance.UpdateXpBarMaxValue(MaxXp);
