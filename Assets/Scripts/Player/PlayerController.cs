@@ -35,10 +35,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale!=0) {
-            Inputs();
-            Animations();
-        }
+        Inputs();
+        Animations();
     }
 
     private void Inputs()
@@ -63,7 +61,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Animations()
     {
-        if (isAttackin) return;
+        if (isAttackin || Time.timeScale==0) return;
         if (moveInput.magnitude != 0) 
         { 
             animator.SetFloat("Horizontal", moveInput.x);

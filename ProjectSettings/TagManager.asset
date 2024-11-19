@@ -16,6 +16,7 @@ TagManager:
   - DialogBox
   - TextDialogBox
   - Interaction
+  - Npc
   layers:
   - Default
   - TransparentFX

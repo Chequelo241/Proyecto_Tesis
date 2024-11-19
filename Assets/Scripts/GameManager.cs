@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "Fin")
         {
-            if (Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene("Mazmorra"); }
+            if (Input.GetKeyDown(KeyCode.R)) { SceneLoader.LoadLevel("Mazmorra"); }
         }
     }
 
@@ -161,13 +161,13 @@ public class GameManager : MonoBehaviour
     {
             dialogBox.SetActive(true);
             dialogtext.text = text;
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
     }
 
     public void HideText()
     {
             dialogBox.SetActive(false);
             dialogtext.text = "";
-            //Time.timeScale = 1;
+            Time.timeScale = 1;
     }
 }

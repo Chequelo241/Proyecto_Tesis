@@ -14,7 +14,7 @@ public class MenuPausa : MonoBehaviour
     }
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneLoader.LoadLevel("Menu");
     }
 
     void TogglePanel()

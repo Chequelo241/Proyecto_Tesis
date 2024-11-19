@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Drag and Drop\DropSlot.cs" />
     <Compile Include="Assets\Scripts\Player\Status\HpBar.cs" />
     <Compile Include="Assets\Scripts\Enemies\FleeAndPatrol.cs" />
+    <Compile Include="Assets\Scripts\Menus\Options\GlowController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Interactions\Obsolete\Sign.cs" />
     <Compile Include="Assets\Scripts\Player\GetDamage.cs" />
@@ -72,18 +73,21 @@
     <Compile Include="Assets\Scripts\ReturnToPreviousScene.cs" />
     <Compile Include="Assets\Scripts\Cards\Card.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyHealth.cs" />
-    <Compile Include="Assets\Scripts\Menus\MenuOpciones.cs" />
     <Compile Include="Assets\Scripts\Interactions\BasicInteraction.cs" />
     <Compile Include="Assets\Scripts\Interactions\SignDialog.cs" />
     <Compile Include="Assets\Scripts\Doors\OnclickDoors.cs" />
+    <Compile Include="Assets\Scripts\Loading.cs" />
     <Compile Include="Assets\Scripts\Drag and Drop\DragHandler.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuPausa.cs" />
     <Compile Include="Assets\Scripts\Enemies\TouchHin.cs" />
+    <Compile Include="Assets\Scripts\Menus\Options\SoundController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\Status\StatusBar.cs" />
     <Compile Include="Assets\Scripts\Doors\Doors.cs" />
+    <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Player\Status\StatusHUD.cs" />
     <Compile Include="Assets\Scripts\Enemies\RandomPatrol.cs" />
+    <Compile Include="Assets\Scripts\Menus\Options\FullScreenController.cs" />
     <Compile Include="Assets\Scripts\Player\Status\LabelLevel.cs" />
   </ItemGroup>
   <ItemGroup>
